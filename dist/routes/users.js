@@ -13,7 +13,7 @@ const connection = mysql2.createConnection({
 router.get("/users", (req, res) => {
     connection.query("select * from users", (err, result) => {
         if (err)
-            console.log(err);
+            res.status(500).send("An error occured");
         res.send(result);
     });
 });
