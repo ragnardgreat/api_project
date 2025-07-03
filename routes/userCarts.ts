@@ -20,12 +20,11 @@ cartRouter.get("/carts", (req, res) => {
     })
 })
 
-
 cartRouter.put("/cart/:id", (req, res) => {
     const id = req.params.id;
     const cart = req.body;
     connection.query(`update carts 
-                      set items = concat(items,",",${cart.itemId}) 
+                      set items = concat(${cart.itemId},",",items) 
                       where id = ${id}`, (err, result) => {
         if (err) res.status(500).send("An error occured");
         res.send(result)

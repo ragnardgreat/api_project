@@ -6,6 +6,7 @@ const app = Express()
 
 import router from "../routes/users.js";
 import cartRouter from "../routes/userCarts.js";
+import itemsRouter from "../routes/products.js";
 
 app.set("view engine", "ejs")
 
@@ -28,5 +29,8 @@ app.use("/", router)
 
 /*User shopping cart router */
 app.use("/", cartRouter)
+
+/*Items router */
+app.use("/",itemsRouter)
 
 app.listen(5000)
