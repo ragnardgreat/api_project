@@ -5,6 +5,7 @@ import mysql2 from "mysql2";
 const app = Express()
 
 import router from "../routes/users.js";
+import cartRouter from "../routes/userCarts.js";
 
 app.set("view engine", "ejs")
 
@@ -22,8 +23,10 @@ app.get("/", (req,res)=>{
     res.send("Homepage")
 });
 
-
+/*User router*/
 app.use("/", router)
 
+/*User shopping cart router */
+app.use("/", cartRouter)
 
 app.listen(5000)

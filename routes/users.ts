@@ -23,7 +23,7 @@ router.get("/users", (req, res) => {
 
 router.post("/users/new", (req, res) => {
   const user = req.body;
-  connection.query(`insert into table users(null,${user.name},${user.username},${user.password},${user.email})`, (err, result) => {
+  connection.query(`insert into users values(null,${user.name},${user.username},${user.password},${user.email}); insert into carts values(null, "")`, (err, result) => {
     if (err) res.status(500).send("An error occured");
     res.status(200);
     console.log("User Created")

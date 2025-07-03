@@ -19,7 +19,7 @@ router.get("/users", (req, res) => {
 });
 router.post("/users/new", (req, res) => {
     const user = req.body;
-    connection.query(`insert into table users(null,${user.name},${user.username},${user.password},${user.email})`, (err, result) => {
+    connection.query(`insert into users values(null,${user.name},${user.username},${user.password},${user.email}); insert into carts values(null, "")`, (err, result) => {
         if (err)
             res.status(500).send("An error occured");
         res.status(200);
@@ -32,6 +32,16 @@ router.get("/users/:id", (req, res) => {
         if (err)
             res.status(500).send("An error occured");
         res.send(result);
+    });
+});
+router.put("/users/:id", (req, res) => {
+    const id = req.params.id;
+    const user = req.body;
+    connection.query(`update users set ${user.type} = ${user.data} where id = ${id}`, (err, result) => {
+        if (err)
+            res.status(500).send("An error occured");
+        res.status(204);
+        console.log("User updated1");
     });
 });
 export default router;
