@@ -1,5 +1,5 @@
-import Express from "express";
-const router = Express();
+import express from "express";
+const router = express();
 import mysql2 from "mysql2";
 const connection = mysql2.createConnection({
     host: "WINDOWS-3PN1LIC",
@@ -19,10 +19,14 @@ router.get("/users", (req, res) => {
 });
 router.post("/users/new", (req, res) => {
     const user = req.body;
-    connection.query(`insert into users values(null,${user.name},${user.username},${user.password},${user.email}); insert into carts values(null, "")`, (err, result) => {
-        if (err)
+    console.log(req.body);
+    connection.query(`insert into users values(null,"${user.name}","${user.username}","${user.password}","${user.email}")`, (err, result) => {
+        if (err) {
             res.status(500).send("An error occured");
-        res.status(200);
+            console.log(err);
+        }
+        ;
+        res.status(200).send("User created!");
         console.log("User Created");
     });
 });

@@ -1,5 +1,5 @@
-import Express from "express";
-const cartRouter = Express();
+import express from "express";
+const cartRouter = express();
 import mysql2 from "mysql2";
 
 

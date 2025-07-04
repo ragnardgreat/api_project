@@ -1,5 +1,5 @@
-import Express from "express";
-const cartRouter = Express();
+import express from "express";
+const cartRouter = express();
 import mysql2 from "mysql2";
 const connection = mysql2.createConnection({
     host: "WINDOWS-3PN1LIC",

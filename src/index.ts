@@ -1,14 +1,15 @@
-import * as fs from "fs";
-import  Express  from "express";
+import  express  from "express";
 import mysql2 from "mysql2";
-
-const app = Express()
-
 import router from "../routes/users.js";
 import cartRouter from "../routes/userCarts.js";
 import itemsRouter from "../routes/products.js";
+import cors from "cors";
+const app = express();
 
-app.set("view engine", "ejs")
+app.set("view engine", "ejs");
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 const connection = mysql2.createConnection({
     host: "WINDOWS-3PN1LIC",

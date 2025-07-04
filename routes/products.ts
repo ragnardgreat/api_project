@@ -1,5 +1,5 @@
-import Express from "express";
-const itemsRouter = Express();
+import express from "express";
+const itemsRouter = express();
 import mysql2 from "mysql2";
 
 
@@ -21,11 +21,11 @@ itemsRouter.get("/items", (req,res)=>{
 })
 
 
-
 itemsRouter.put("/items/new", (req,res)=>{
     const item = req.body;
-    connection.query(`insert into items values(null,${item.name},${item.price},${item.description},${item.imgLink})`, (err,result)=> {
+    connection.query(`insert into items values(null,"${item.name}","${item.price}","${item.description}","${item.imgLink}")`, (err,result)=> {
     if (err) res.status(500).send("An error occured");
+    res.status(200);
     console.log("New item added!")
   })
 })
